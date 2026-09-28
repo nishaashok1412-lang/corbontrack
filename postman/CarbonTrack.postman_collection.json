@@ -1,0 +1,155 @@
+{
+  "info": {
+    "name": "CarbonTrack API",
+    "_postman_id": "carbontrack-api-2026",
+    "description": "Requests for the CarbonTrack household carbon footprint backend.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ],
+  "item": [
+    {
+      "name": "Households",
+      "item": [
+        {
+          "name": "List households - starts as []",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/households"
+          }
+        },
+        {
+          "name": "Create household",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"Green Family\", \"membersCount\": 4}"
+            },
+            "url": "{{baseUrl}}/api/households"
+          }
+        },
+        {
+          "name": "Get household 1",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/households/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Activities",
+      "item": [
+        {
+          "name": "List activities - starts as []",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/households/1/activities"
+          }
+        },
+        {
+          "name": "Log car commute",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"activityDate\": \"2026-09-28\", \"activityType\": \"CAR_COMMUTE\", \"quantity\": 10}"
+            },
+            "url": "{{baseUrl}}/api/households/1/activities"
+          }
+        },
+        {
+          "name": "Monthly footprint",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/households/1/footprint?month=2026-09"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Challenges",
+      "item": [
+        {
+          "name": "List challenges - starts as []",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/challenges"
+          }
+        },
+        {
+          "name": "Create active challenge",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"September Reduction\", \"description\": \"Reduce monthly footprint.\", \"targetReductionPercentage\": 10, \"startDate\": \"2026-09-01\", \"endDate\": \"2026-09-30\"}"
+            },
+            "url": "{{baseUrl}}/api/challenges"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Participation",
+      "item": [
+        {
+          "name": "Join challenge",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/challenges/1/join/1"
+          }
+        },
+        {
+          "name": "Household participation/progress - starts as []",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/households/1/challenges"
+          }
+        },
+        {
+          "name": "Challenge participants - starts as []",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/challenges/1/participants"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Leaderboard",
+      "item": [
+        {
+          "name": "Monthly leaderboard - starts as []",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/leaderboard?month=2026-09"
+          }
+        }
+      ]
+    }
+  ]
+}

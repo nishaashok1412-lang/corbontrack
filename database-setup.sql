@@ -1,0 +1,3 @@
+CREATE DATABASE IF NOT EXISTS carbontrack;
+USE carbontrack;
+SHOW TABLES;
